@@ -16,11 +16,6 @@ def home():
     return render_template('home.html')
 
 
-@app.route("/uploads/<filename>")
-def get_file(filename):
-    return send_from_directory(app.config['UPLOADED_PHOTOS_DEST'], filename)
-
-
 @app.route("/convert", methods=['GET', 'POST'])
 def convert():
     """returns site homepage"""
@@ -79,6 +74,11 @@ def resize():
         message = f"/image/{img_dir_name}/{img_name.split('.')[0]}"
 
     return render_template('resize.html', message=message)
+
+
+@app.route("/uploads/<filename>")
+def get_file(filename):
+    return send_from_directory(app.config['UPLOADED_PHOTOS_DEST'], filename)
 
 
 @app.route('/compress', methods=["GET", "POST"])
