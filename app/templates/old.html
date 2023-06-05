@@ -1,0 +1,93 @@
+<!-- <div class="row">
+        <div class="col-6 mx-auto mt-5 text-center">
+            <h1>Upload Image to Convert</h1>
+
+            <form method="post" enctype="multipart/form-data" >
+                {{ form.hidden_tag() }}
+
+                {% for error in form.photo.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor%}
+
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        {{ form.photo(class="form-control") }}
+                    </div>
+                    <div class="col-auto">
+                        {{ form.submit(class="btn btn-success") }}
+                    </div>
+                </div>
+            </form>
+
+            {% if file_url %}
+                <div class="mt-5">
+                    <img src="{{ file_url }}" style="width: 400px;">
+                </div>
+            {% endif %}
+        </div>
+    </div> -->
+
+
+    <div class="row">
+        <div class="col-6 mx-auto mt-5 text-center">
+            <h1>Upload Image to Compress</h1>
+
+            <form method="post" enctype="multipart/form-data" >
+                {{ form.hidden_tag() }}
+
+                {% for error in form.photo.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor%}
+
+                <!-- <input type="text" name="pic"/>
+                <input type="submit" value="Upload file"/> -->
+
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        {{ form.photo(class="form-control") }}
+                    </div>
+                    <div class="col-auto">
+                        {{ form.submit(class="btn btn-success") }}
+                    </div>
+                </div>
+            </form>
+
+            {% if file_url %}
+                <div class="mt-5">
+                    <img src="{{ file_url }}" style="width: 400px;">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    # def convert_img(filename, operation):
+#     """Converts an image to a chosen format"""
+#     image = cv2.imread(f'convertify/uploads/{filename}')
+
+#     print(image)
+    
+#     if operation == "cgray":
+#         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+#         print(gray)
+
+#         # if gray:
+#         newfile = f'static/uploaded/{filename}'
+#         cv2.imwrite(newfile, gray)
+#         return newfile
+
+#         # return "Failed to convert to grayscale"
+    
+#     elif operation == "cjpg":
+#         newfile = f"static/uploaded/{filename.split('.')[0] + '.jpg'}"
+#         success = cv2.imwrite(newfile, image)
+#         if success:
+#             return newfile
+#         return "Failed to convert to JPG"
+
+#     elif operation == "cpng":
+#         newfile = f"static/uploaded/{filename.split('.')[0] + '.png'}"
+#         success = cv2.imwrite(newfile, image)
+#         if success:
+#             return newfile
+#         return "Failed to convert to PNG"

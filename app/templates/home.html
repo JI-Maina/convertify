@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-6 mx-auto mt-5 text-center">
+            <h1>Welcome to Convertify</h1>
+
+            {% if file_url %}
+                <div class="mt-5">
+                    <img src="{{ file_url }}" style="width: 400px;">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

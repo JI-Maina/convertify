@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+        <h3 class="my-3" style="font-weight: 400;">Upload Image to resize</h3>
+
+        <form action="/resize" method="post" enctype="multipart/form-data" class="mb-3">
+
+            <div class="input-group mb-3">
+                <input type="file" name="image" id="image" class="form-control">
+                <label for="image" id="image" class="input-group-text">Upload</label>
+            </div>
+
+            <div class="mb-3">
+                <small class="text-muted">Images should be 2560px x 1440px and not contain a dot in the filename</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Upload</button>
+            
+        </form>
+
+        {% if message %}
+            <a href="{{ message }}" class="mt-3">View image</a>
+        {% endif %}
+
+    </div>
+{% endblock content %}

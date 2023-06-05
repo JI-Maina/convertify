@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+        <h3 class="my-4" style="font-weight: 400;">Upload Image to convert</h3>
+        
+        <form action="/convert" method="post" enctype="multipart/form-data">
+            
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" id="img" name="img">
+                <label class="input-group-text" for="img">Upload</label>
+            </div>
+            
+            <div class="input-group mb-3">
+                <select class="form-select" id="operation" name="operation">
+                    <option selected>Choose convert operation</option>
+                    <option value="cjpg">Convert to JPG</option>
+                    <option value="cpng">Convert to PNG</option>
+                    <option value="cwebp">Convert to WEBP</option>
+                    <option value="cgray">Convert to GRAYSCALE</option>
+                </select>
+                <label class="input-group-text" for="operation">Options</label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Convert</button>
+        </form>
+    </div>
+
+{% endblock content %}
