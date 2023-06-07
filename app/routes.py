@@ -1,6 +1,7 @@
 import os
 import secrets
 from werkzeug.utils import secure_filename
+from zipfile import ZipFile
 from flask import render_template, url_for, flash, redirect, send_from_directory, request, send_file
 
 from app import app, photos, q
@@ -8,7 +9,7 @@ from app.forms import RegistrationForm, LoginForm, UploadForm
 from app.modules.allowed import allowed_file
 from app.modules.convert import convert_img
 from app.modules.compress import compress_image
-from app.tasks import create_image_set
+from app.modules.resize import create_image_set
 
 
 @app.route("/")
@@ -35,8 +36,8 @@ def convert():
         operation = request.form['operation']
 
         # If the user does not select a file, the browser submits an empty file.
-        if file.filename == '':
-            flash('No selected file', 'danger')
+        if file.filename == '' or operation == 'Choose convert operation':
+            flash('No selected file or convert operation', 'danger')
             return redirect(request.url)
 
         if file and allowed_file(file.filename):
@@ -48,38 +49,101 @@ def convert():
 
             # convert according to passed operation
             newfile = convert_img(filename, operation)
-
             flash("Your image has been converted", 'success')
 
+            cvt_img = newfile.split('/')[-1]
+            print(cvt_img)
+
+            file_url = url_for('get_file', filename=filename)
+            cvt_url = url_for('get_cvt', filename=cvt_img)
+
+            print(file_url)
+            print(cvt_url)
+
+            file_format = filename.split('.')[-1].upper()
+            cvt_format = cvt_img.split('.')[-1].upper()
+
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], 'uploads', filename)
+            cvt_path = os.path.join(app.config['UPLOAD_FOLDER'], 'converted', cvt_img)
+
+            print(file_path)
+            print(cvt_path)
+
+            file_size = round(os.path.getsize(file_path) / 1000, 2)
+            cvt_size = round(os.path.getsize(cvt_path) / 1000, 2)
+
+            print(file_format)
+            print(cvt_format)
+
+            return render_template('convert.html', file_url=file_url, cvt_url=cvt_url, filename=cvt_img, file_format=file_format, cvt_format=cvt_format, file_size=file_size, cvt_size=cvt_size)
+
     return render_template('convert.html')
+
+
+@app.route('/converted/<filename>')
+def get_cvt(filename):
+    return send_from_directory(app.config['CONVERTED_FOLDER'], filename)
+
+
+@app.route('/download/<filename>')
+def download_cvt(filename):
+    file_path = os.path.join(app.config['CONVERTED_FOLDER'], filename)
+    return send_file(file_path, as_attachment=True)
 
 
 @app.route("/resize", methods=['GET', 'POST'])
 def resize():
     """represents site homepage"""
 
-    message = None
-
     if request.method == "POST":
 
-        image = request.files['image']
+        if 'img' not in request.files:
+            flash('No file part', 'danger')
+            return redirect(request.url)
+        
+        image = request.files['img']
 
-        img_dir_name = secrets.token_hex(4)
+        if image.filename == '':
+            flash('No image selected for uploading', 'danger')
+            return redirect(request.url)
+        
+        if image and allowed_file(image.filename):
+            img_name = secure_filename(image.filename)
 
-        img_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'resized', img_dir_name)
-        img_name = secure_filename(image.filename)
+            # make storage directory
+            img_dir_name = secrets.token_hex(4)
+            img_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'resized', img_dir_name)
+            os.mkdir(img_dir)
 
-        os.mkdir(img_dir)
+            image.save(os.path.join(img_dir, img_name))
 
-        image.save(os.path.join(img_dir, img_name))
+            # call func to resize image
+            create_image_set(img_dir, img_name)
+            print(img_dir)
+            img_dir = os.listdir(img_dir)
 
-        create_image_set(img_dir, img_name)
+            print(img_dir)
+            # message = f"/image/{img_dir_name}/{img_name.split('.')[0]}"
 
-        flash("Image uploaded successful, wait as we resize it", 'success')
+            flash("Your image has been resized successfully", 'success')
+            return render_template('resize.html', file_dir=img_dir, filename=img_name, dir=img_dir_name)
 
-        message = f"/image/{img_dir_name}/{img_name.split('.')[0]}"
+    return render_template('resize.html')
 
-    return render_template('resize.html', message=message)
+
+@app.route('/resized/<dir>/<filename>')
+def download_resized(dir, filename):
+    path = os.path.join(app.config['RESIZED_FOLDER'], dir, filename)
+    return send_file(path, as_attachment=True)
+
+
+@app.route('/download/all')
+def download_resized(dir, img):
+
+    with ZipFile('dir file.zip', 'w') as zip_img:
+        
+
+    return render_template('view_img.html', dir=dir, img=img)
 
 
 @app.route('/compress', methods=["GET", "POST"])
@@ -103,9 +167,6 @@ def compress():
             save_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'compressed')
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], 'uploads', img_name)
 
-            print(save_dir)
-            print(file_path)
-
             compress_image(save_dir, file_path)
 
             comp_url = url_for('get_comp', filename=img_name)
@@ -114,10 +175,6 @@ def compress():
             comp_size = round(os.path.getsize(os.path.join(save_dir, img_name)) / 1000, 2)
 
             diff = orig_size - comp_size
-
-            print(orig_size)
-            print(comp_size)
-            print(diff)
 
             percent = round((diff / orig_size) * 100)
 

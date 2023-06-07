@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <picture>
+            <source class="img-fluid" srcset="/./app/uploads/uploads/resized/{{dir}}/{{img}}-thumbnail.png" media="(max-width: 150px)">
+
+            <source class="img-fluid" srcset="/./app/uploads/uploads/resized/{{dir}}/{{img}}-540.png" media="(max-width: 540px)">
+
+            <source class="img-fluid" srcset="/./app/uploads/uploads/resized/{{dir}}/{{img}}-768.png" media="(max-width: 768px)">
+
+            <source class="img-fluid" srcset="/./app/uploads/uploads/resized/{{dir}}/{{img}}-1080.png" media="(max-width: 1080px)">
+
+            <source class="img-fluid" srcset="/./app/uploads/uploads/resized/{{dir}}/{{img}}-1200.png" media="(max-width: 1200px)">
+
+            <img class="img-fluid" src="/./app/uploads/uploads/resized/{{dir}}/{{img}}.png">
+        </picture>
+    </div>
+</div>
+
+{% endblock content %}

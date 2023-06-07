@@ -91,3 +91,48 @@
 #         if success:
 #             return newfile
 #         return "Failed to convert to PNG"
+
+<form method="post" enctype="multipart/form-data" >
+    {{ form.hidden_tag() }}
+
+    {% for error in form.photo.errors %}
+        <span style="color: red;">{{ error }}</span>
+    {% endfor%}
+
+    <div class="row ">
+        <div class="col-auto">
+            {{ form.photo(class="form-control") }}
+        </div>
+        <div class="col-auto">
+            {{ form.submit(class="btn btn-success") }}
+        </div>
+    </div>
+</form>
+
+# With database idea
+# @app.route("/compress", methods=['GET', 'POST'])
+# def compress():
+#     """represents site homepage"""
+#     if request.method == 'POST':
+#         pic = request.files['pic']
+#         if not pic:
+#             return "No image uploaded", 400
+        
+#         filename = secure_filename(pic.filename)
+#         mimetype = pic.mimetype
+
+#         img = UploadedImage(image=pic.read(), name=filename, mimetype=mimetype)
+
+#         db.session.add(img)
+#         db.session.commit()
+
+#         return "Image successfully uploaded", 200
+#     return render_template('compress.html')
+
+
+# form = UploadForm()
+#     if form.validate_on_submit():
+#         filename = photos.save(form.photo.data)
+#         file_url = url_for('get_file', filename=filename)
+#     else:
+#         file_url = None
