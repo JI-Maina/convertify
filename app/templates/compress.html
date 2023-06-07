@@ -1,42 +1,48 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div>
-        <h3 class="my-4" style="font-weight: 400;">Upload Image to Compress</h3>
-
-        <form method="post" enctype="multipart/form-data" >
-            {{ form.hidden_tag() }}
-
-            {% for error in form.photo.errors %}
-                <span style="color: red;">{{ error }}</span>
-            {% endfor%}
-
-            <div class="row ">
-                <div class="col-auto">
-                    {{ form.photo(class="form-control") }}
-                </div>
-                <div class="col-auto">
-                    {{ form.submit(class="btn btn-success") }}
-                </div>
-            </div>
-        </form>
         
+{% if file_url %}
 
-        {% if file_url %}
-            <div class="mt-5">
-                <img src="{{ file_url }}" style="width: 400px;">
+    <div class="row">
+
+        <div class="col mt-2">
+            <div>
+                <h4>Original image</h4><small> (size: {{ orig_size }} kb)</small>
             </div>
-        {% endif %}
+            <img class="mt-2 img-responsive" src="{{ file_url }}" style="max-height: auto; max-width: auto;">
+
+        </div>
+
+        <div class="col mt-2">
+
+            <div>
+                <div class="d-flex justify-content-between">
+                    <h4>Compressed image</h4>
+                    <a href="/download/{{ filename }}" target="blank"><button class='btn btn-success'>Download!</button></a>
+                </div>
+                <small>(size: {{ comp_size }} kb)</small>
+            </div>
+
+            <img class="mt-2 img-responsive" src="{{ comp_url }}" style="height: auto; width: auto;">
+
+        </div>
 
     </div>
-{% endblock content %}
 
+{% endif %}
 
-<!-- <h1>Upload new File</h1>
-<div class="col-6 mx-auto mt-5 text-center">
-    <form action="http://127.0.0.1:5000/compress" method="post" enctype="multipart/form-data">
-        <div class="row justify-content-center">
-            <input class="form-control" type="file" name="pic">
-            <input class="btn btn-success" type="submit" value="Upload">
+<div class="row">
+    <h3 class="my-4" style="font-weight: 400;">Upload Image to Compress</h3>
+
+    <form action="/compress" method="post" enctype="multipart/form-data">
+
+        <div class="input-group mb-3">
+            <input class="form-control" type="file" name="img" id="img">
+            <button type="submit" class="btn btn-primary">Compress Image</button>
         </div>
+
     </form>
-</div> -->
+
+</div>
+
+{% endblock content %}
