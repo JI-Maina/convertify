@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 from zipfile import ZipFile
 from flask import render_template, url_for, flash, redirect, send_from_directory, request, send_file
 
-from app import app, photos, q
+from app import app, photos
 from app.forms import RegistrationForm, LoginForm, UploadForm
 from app.modules.allowed import allowed_file
 from app.modules.convert import convert_img
