@@ -8,7 +8,7 @@ def compress_image(image_dir, image_name):
 
     max_width = 1200
 
-    image = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], image_name))
+    image = Image.open(image_name)
 
     width, height = image.size
 
@@ -18,7 +18,7 @@ def compress_image(image_dir, image_name):
 
     new_image = image.resize((max_width, round(new_height)))
 
-    filename = os.path.join(image_dir, image_name)
+    filename = os.path.join(image_dir, image_name.split('/')[-1])
 
     new_image.save(filename, optimize=True, quality=90)
 

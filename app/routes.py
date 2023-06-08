@@ -137,13 +137,12 @@ def download_resized(dir, filename):
     return send_file(path, as_attachment=True)
 
 
-@app.route('/download/all')
-def download_resized(dir, img):
+# @app.route('/download/all')
+# def download_resized(dir, img):
 
-    with ZipFile('dir file.zip', 'w') as zip_img:
+#     with ZipFile('dir file.zip', 'w') as zip_img:
         
-
-    return render_template('view_img.html', dir=dir, img=img)
+#     return render_template('view_img.html', dir=dir, img=img)
 
 
 @app.route('/compress', methods=["GET", "POST"])

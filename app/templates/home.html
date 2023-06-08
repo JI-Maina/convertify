@@ -1,14 +1,64 @@
-{% extends "layout.html" %}
-{% block content %}
-    <div class="row">
-        <div class="col-6 mx-auto mt-5 text-center">
-            <h1>Welcome to Convertify</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            {% if file_url %}
-                <div class="mt-5">
-                    <img src="{{ file_url }}" style="width: 400px;">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- bootstrap-icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4" href="/">Convertify</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <div class="navbar-nav mr-auto">
+                            <a class="nav-item nav-link" href="/resize">Resize</a>
+                            <a class="nav-item nav-link" href="/convert">Convert</a>
+                            <a class="nav-item nav-link" href="/compress">Compress</a>
+                        </div>
+                    </div>
+
+                <!-- Navbar Right Side -->
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link" href="/login">Login</a>
+                    <a class="nav-item nav-link" href="/register">Register</a>
                 </div>
-            {% endif %}
+                </div>
+            </div>
+        </nav>
+        
+    </header>
+
+        <div class="card bg-dark text-white">
+            <img style="height: 100vh; object-fit: cover;" class="card-img" src="{{ url_for('static', filename='tirachard-kumtanom.jpg') }}" alt="" srcset="">
+
+            <div class="row">
+                <div class="card-img-overlay text-center mt-9" style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 2rem;
+                    ">
+                    
+                    <p class="card-text" style="font-weight: 800; font-size: 2rem;">Experience the ultimate image enhancement platform: effortlessly resize, compress, and convert image formats to unleash the full potential of your visual content.</p>
+                    
+                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                        <button class="btn btn-primary" type="submit">Get Started</button>
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
-{% endblock content %}
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
