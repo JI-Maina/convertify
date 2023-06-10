@@ -12,6 +12,10 @@
                 </div>
             {% endfor %}
 
+            <div class="col">
+                <a href="{{ url_for('view_resized', dir=dir, img=img) }}" target="blank"><button class='btn btn-success'>Preview all</button></a>
+            </div>
+
         </div>
 
     {% endif %}
