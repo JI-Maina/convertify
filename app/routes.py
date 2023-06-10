@@ -137,14 +137,6 @@ def download_resized(dir, filename):
     return send_file(path, as_attachment=True)
 
 
-# @app.route('/download/all')
-# def download_resized(dir, img):
-
-#     with ZipFile('dir file.zip', 'w') as zip_img:
-        
-#     return render_template('view_img.html', dir=dir, img=img)
-
-
 @app.route('/compress', methods=["GET", "POST"])
 def compress():
     if request.method == 'POST':
@@ -192,7 +184,7 @@ def get_comp(filename):
     return send_from_directory(app.config['COMPRESSED_FOLDER'], filename)
 
 
-@app.route('/download/<filename>')
+@app.route('/download-compressed/<filename>')
 def download_comp(filename):
     file_path = os.path.join(app.config['COMPRESSED_FOLDER'], filename)
     return send_file(file_path, as_attachment=True)

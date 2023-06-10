@@ -10,11 +10,11 @@
     <!-- bootstrap-icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <title>Document</title>
+    <title>Convertify - landing page</title>
 </head>
 <body>
     <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+        <nav class="navbar bg-dark navbar-expand-md navbar-dark fixed-top">
             <div class="container">
                 <a class="navbar-brand mr-4" href="/">Convertify</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,17 +42,24 @@
     </header>
 
         <div class="card bg-dark text-white">
-            <img style="height: 100vh; object-fit: cover;" class="card-img" src="./tirachard-kumtanom.jpg" alt="" srcset="">
+            <img style="height: 100vh; object-fit: cover;" class="card-img" src="app/static/cover-image.jpg" alt="" srcset="">
 
             <div class="row">
                 <div class="card-img-overlay text-center mt-9" style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 2rem;
                     ">
+
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col">
+                            <p class="card-text" style="font-weight: 800; font-size: 2rem;">Experience the ultimate image enhancement platform: effortlessly resize, compress, and convert image formats to unleash the full potential of your visual content.</p>
+                            
+                            <a href="http://localhost:5000/convert" rel="noopener noreferrer">
+                                <button class="btn btn-primary" type="submit">Get Started</button>
+                            </a>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
                     
-                    <p class="card-text" style="font-weight: 800; font-size: 2rem;">Experience the ultimate image enhancement platform: effortlessly resize, compress, and convert image formats to unleash the full potential of your visual content.</p>
-                    
-                    <a href="http://" target="_blank" rel="noopener noreferrer">
-                        <button class="btn btn-primary" type="submit">Get Started</button>
-                    </a>
                 </div>
             </div>
         </div>
@@ -70,31 +77,31 @@
                     <h5 class="card-title">Convert</h5>
                     <p class="card-text">Transform your images with a single click, converting them to any desired format to enhance compatibility, versatility, and visual impact.</p>
 
-                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                    <a href="http://localhost:5000/convert" rel="noopener noreferrer">
                         <button class="btn btn-primary" type="submit">Get Started</button>
                     </a>
                 </div>
             </div>
 
             <div class="card m-1 mb-2">
-                <img src="./tirachard-kumtanom.jpg" class="card-img-top" alt="...">
+                <img src="app/static/pexels-david.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Resize</h5>
                     <p class="card-text">Resize your images with precision and ease, effortlessly adapting them to fit any screen or layout for a seamless visual experience.</p>
 
-                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                    <a href="http://localhost:5000/convert" rel="noopener noreferrer">
                         <button class="btn btn-primary" type="submit">Get Started</button>
                     </a>
                 </div>
             </div>
 
             <div class="card m-1 mb-2">
-                <img src="./tirachard-kumtanom.jpg" class="card-img-top" alt="...">
+                <img src="app/static/pexels-steve.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Compress</h5>
                     <p class="card-text">Optimize your images for the web with our advanced compression techniques, delivering faster load times and superior visual quality.</p>
 
-                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                    <a href="http://localhost:5000/compress" rel="noopener noreferrer">
                         <button class="btn btn-primary" type="submit">Get Started</button>
                     </a>
                 </div>
@@ -106,17 +113,24 @@
         <div class="card mb-3 p-5">
             <div class="row g-0">
               <div class="col-md-4" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                <img class="img-fluid" style="height: 10rem; width: 10rem; border-radius: 50%;" src="./tirachard-kumtanom.jpg" alt="">
+                <img class="img-fluid" style="height: 10rem; width: 10rem; border-radius: 50%;" src="app/static/Cartoon-me.jpeg" alt="">
 
-                <h5>John Maina</h5>
+                <h5 class="text-muted mt-3">John Maina</h5>
+                <p class="card-text"><small class="text-muted">Software engineer student</small></p>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">About me</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. his is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. his is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 
-                  
+                  <div class="card-text">
+                    <p>I am incredibly motivated by the idea of creating an innovative app that revolutionizes the way we handle images.</p>
+                    
+                    <p>Through my app, I aim to address the common challenges faced by users when it comes to managing their digital imagery. By incorporating powerful compression algorithms, I envision enabling users to significantly reduce the file size of their images without compromising on quality.</p>
+                    
+                    <p>Additionally, my app will provide a seamless conversion feature, allowing users to effortlessly switch between various image formats to suit their needs. Moreover, recognizing the importance of optimizing images for different platforms and devices, I am determined to develop a robust resizing functionality that streamlines the process and ensures optimal image display across different mediums.</p>
+                    
+                    <p>Ultimately, my motivation lies in empowering users to easily manage their image files, save storage space, and enhance their overall digital experience through an intuitive and comprehensive app solution.</p>
+                </div>
                   
                 </div>
               </div>

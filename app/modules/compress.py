@@ -1,6 +1,5 @@
 import os
 from PIL import Image
-from app import app
 
 
 def compress_image(image_dir, image_name):
