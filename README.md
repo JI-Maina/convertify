@@ -1,4 +1,5 @@
 # Convertify
+
 ![Convertify landing page image](/app/static/Convertify.png)
 
 # Introduction
@@ -32,10 +33,15 @@ The project is not yet deployed but you can use it locally on your machine by fo
 
 ## Usage
 After you navigate to one of the pages (resize, convert or compress), you need to first of all upload an image.
+
 ![Convertify landing page image](/app/static/Convertify.png)
+
 Then you can click the button on the respective pages.However on the convert page, you need to chose a convert operation before proceeding with the convert button.
+
 ![Convertify - upload image form](/app/static/upload-convert.png)
+
 After the operation is done on the uploaded image, the original image and new image will be displayed. On top of the manipulated image will be a download button. You can click it to get your modified image.
+
 ![Convertify - download manipulated image](/app/static/download-converted.png)
 
 ## Contribution
